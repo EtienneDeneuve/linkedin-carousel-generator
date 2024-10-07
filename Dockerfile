@@ -1,7 +1,6 @@
 FROM pandoc/latex:latest-ubuntu
-# Installer les packages LaTeX manquants
 
-# Installer les polices nécessaires
+# Installer les packages
 RUN apt-get update && \
     apt-get install -y \
         python3-pygments \
@@ -20,6 +19,7 @@ RUN fmtutil-sys --byfmt xelatex
 # Mettre à jour tlmgr sans exécuter les actions associées
 RUN tlmgr update --self --all --no-execute-actions 
 
+# Installer les dépendances pour que le template puisse fonctionner
 RUN tlmgr install \
         adjustbox \
         enumitem \
